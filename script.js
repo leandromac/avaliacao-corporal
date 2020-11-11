@@ -17,6 +17,8 @@ button.addEventListener('click', e => {
     imc: imc(value)
   })
 
+  row(name.value, age.value, weight.value, height.value)
+
   console.log(name.value + ' tem ' + age.value + ' anos, pesa ' + weight.value + ' kg e tem ' + height.value + ' de altura.')
   console.log('O IMC de ' + name.value + ' é: ' + value + ' situação: ' + imc(value))
   name.value = ''
@@ -25,6 +27,24 @@ button.addEventListener('click', e => {
   height.value = ''
 
 })
+
+function row(name, age, weight, height) {
+  let row = document.querySelector('.row')
+  let tdName = document.createElement('td')
+  let tdAge = document.createElement('td')
+  let tdWeight = document.createElement('td')
+  let tdHeight = document.createElement('td')
+
+  tdName.innerText = name
+  tdAge.innerText = age
+  tdWeight.innerText = weight
+  tdHeight.innerText = height
+
+  row.appendChild(tdName)
+  row.appendChild(tdAge)
+  row.appendChild(tdWeight)
+  row.appendChild(tdHeight)
+}
 
 function imc(param) {
   if(param <= 18.5) {
