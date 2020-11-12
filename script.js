@@ -5,6 +5,18 @@ const age = document.querySelector('.age')
 const weight = document.querySelector('.weight')
 const height = document.querySelector('.height')
 
+var citiesRef = firebase.database().ref('teste7-28555').orderByChild('name')
+citiesRef.once('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    var childKey = childSnapshot.key;
+    var childData = childSnapshot.val()
+    console.log(childKey)
+    console.log(childData)
+  });
+});
+
+console.log(citiesRef)
+
 button.addEventListener('click', e => {
   e.preventDefault()
   let value = weight.value / (height.value * 2)
@@ -28,7 +40,7 @@ button.addEventListener('click', e => {
 
 })
 
-function row(cpf, name, age, weight, height, situation) {
+let row = (cpf, name, age, weight, height, situation) => {
   let row = document.querySelector('.row')
   let tr = document.createElement('tr')
   let tdCPF = document.createElement('td')
@@ -56,14 +68,23 @@ function row(cpf, name, age, weight, height, situation) {
   tr.appendChild(tdSituation)
 }
 
-function imc(param) {
+let imc = param => {
   if(param <= 18.5) {
     return 'Abaixo do peso'
   }
   if(param > 18.5 && param <= 24.9) {
-    return 'Peso normal'
+    return 'Peso ideal'
   }
   if(param >= 25 && param <= 29.9) {
     return 'Sobrepeso'
+  }
+  if(param >= 30 && param <= 34.9) {
+    return 'Obesidade grau I'
+  }
+  if(param >= 35 && param <= 39.9) {
+    return 'Obesidade grau II'
+  }
+  if(param > 40) {
+    return 'Obesidade grau III'
   }
 }
