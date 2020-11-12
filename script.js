@@ -17,7 +17,7 @@ button.addEventListener('click', e => {
     imc: imc(value)
   })
 
-  row(name.value, age.value, weight.value, height.value)
+  row(cpf.value, name.value, age.value, weight.value, height.value, imc(value))
 
   console.log(name.value + ' tem ' + age.value + ' anos, pesa ' + weight.value + ' kg e tem ' + height.value + ' de altura.')
   console.log('O IMC de ' + name.value + ' é: ' + value + ' situação: ' + imc(value))
@@ -28,22 +28,32 @@ button.addEventListener('click', e => {
 
 })
 
-function row(name, age, weight, height) {
+function row(cpf, name, age, weight, height, situation) {
   let row = document.querySelector('.row')
+  let tr = document.createElement('tr')
+  let tdCPF = document.createElement('td')
   let tdName = document.createElement('td')
   let tdAge = document.createElement('td')
   let tdWeight = document.createElement('td')
   let tdHeight = document.createElement('td')
+  let tdSituation = document.createElement('td')
 
+  tdCPF.innerText = cpf
   tdName.innerText = name
   tdAge.innerText = age
   tdWeight.innerText = weight
   tdHeight.innerText = height
+  tdSituation.innerText = situation
+  
+  tdSituation.setAttribute('class', 'situation')
 
-  row.appendChild(tdName)
-  row.appendChild(tdAge)
-  row.appendChild(tdWeight)
-  row.appendChild(tdHeight)
+  row.appendChild(tr)
+  tr.appendChild(tdCPF)
+  tr.appendChild(tdName)
+  tr.appendChild(tdAge)
+  tr.appendChild(tdWeight)
+  tr.appendChild(tdHeight)
+  tr.appendChild(tdSituation)
 }
 
 function imc(param) {
