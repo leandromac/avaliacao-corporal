@@ -11,8 +11,9 @@ const mus = document.querySelector('.mus')
 const bone = document.querySelector('.bone')
 const bmi = document.querySelector('.bmi')
 const kcal = document.querySelector('.kcal')
+const notification = document.querySelector('.notification')
 
-var citiesRef = firebase.database().ref('teste7-28555').orderByChild('name')
+const citiesRef = firebase.database().ref('teste7-28555').orderByChild('name')
 citiesRef.once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var childKey = childSnapshot.key;
@@ -60,7 +61,7 @@ button.addEventListener('click', e => {
 
 })
 
-let row = (cpf, name, birth, weight, height, situation, fat, tbw, mus, bone, bmi, kcal) => {
+const row = (cpf, name, birth, weight, height, situation, fat, tbw, mus, bone, bmi, kcal) => {
   let row = document.querySelector('.row')
   let tr = document.createElement('tr')
   let tdCPF = document.createElement('td')
@@ -104,9 +105,17 @@ let row = (cpf, name, birth, weight, height, situation, fat, tbw, mus, bone, bmi
   tr.appendChild(tdBone)
   tr.appendChild(tdBmi)
   tr.appendChild(tdKcal)
+
+  notify(situation)
 }
 
-let imc = param => {
+const notify = (situation, result, imc) => {
+  if(imc === 'Abaixo do peso') {
+    return notification.style = 'display: block'
+  }
+}
+
+const imc = param => {
   if(param <= 18.5) {
     return 'Abaixo do peso'
   }
