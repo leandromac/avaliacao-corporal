@@ -75,10 +75,11 @@ const row = (cpf, name, birth, weight, height, situation, fat, tbw, mus, bone, b
   let tdBone = document.createElement('td')
   let tdBmi = document.createElement('td')
   let tdKcal = document.createElement('td')
+  let today = new Date()
 
   tdCPF.innerText = cpf
   tdName.innerText = name
-  tdBirth.innerText = birth
+  tdBirth.innerText = ((today.getFullYear()) - (birth.split('-')[0]))
   tdWeight.innerText = weight
   tdHeight.innerText = height
   tdSituation.innerText = situation
@@ -104,6 +105,8 @@ const row = (cpf, name, birth, weight, height, situation, fat, tbw, mus, bone, b
   tr.appendChild(tdBone)
   tr.appendChild(tdBmi)
   tr.appendChild(tdKcal)
+
+  console.log(birth)
 
 }
 
