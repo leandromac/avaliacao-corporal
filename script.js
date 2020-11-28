@@ -116,21 +116,42 @@ const notify = (param) => {
     notification.className = 'tile is-child notification is-warning'
     notification.style = 'display: block'
     title.innerText = param
-    subtitle.innerText = 'O seu IMC ideal é entre 18.5 e 24.9.'
+    subtitle.innerText = 'O seu IMC está abaixo de 18.5'
   }
 
   if(param === 'Peso ideal') {
     notification.className = 'tile is-child notification is-success'
     notification.style = 'display: block'
     title.innerText = param
-    subtitle.innerText = 'O seu IMC ideal é entre 25 e 29.9.'
+    subtitle.innerText = 'O seu IMC é o ideal é entre 18.50 e 24.9.'
   }
 
   if(param === 'Sobrepeso') {
-    notification.className = 'tile is-child notification is-primary'
+    notification.className = 'tile is-child notification is-warning'
     notification.style = 'display: block'
     title.innerText = param
-    subtitle.innerText = 'O seu IMC ideal é entre 30 e 34.9.'
+    subtitle.innerText = 'O seu IMC está entre 30 e 34.9.'
+  }
+
+  if(param === 'Obesidade grau I') {
+    notification.className = 'tile is-child notification is-danger'
+    notification.style = 'display: block'
+    title.innerText = param
+    subtitle.innerText = 'O seu IMC está entre 30 e 34.9.'
+  }
+
+  if(param === 'Obesidade grau II') {
+    notification.className = 'tile is-child notification is-danger'
+    notification.style = 'display: block'
+    title.innerText = param
+    subtitle.innerText = 'O seu IMC está entre 35 e 39.9.'
+  }
+
+  if(param === 'Obesidade grau III') {
+    notification.className = 'tile is-child notification is-danger'
+    notification.style = 'display: block'
+    title.innerText = param
+    subtitle.innerText = 'O seu IMC está acima de 40.'
   }
 }
 
