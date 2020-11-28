@@ -11,7 +11,6 @@ const mus = document.querySelector('.mus')
 const bone = document.querySelector('.bone')
 const bmi = document.querySelector('.bmi')
 const kcal = document.querySelector('.kcal')
-const notification = document.querySelector('.notification')
 
 const citiesRef = firebase.database().ref('teste7-28555').orderByChild('name')
 citiesRef.once('value', function(snapshot) {
@@ -22,8 +21,6 @@ citiesRef.once('value', function(snapshot) {
     console.log(childData)
   });
 });
-
-console.log(citiesRef)
 
 button.addEventListener('click', e => {
   e.preventDefault()
@@ -58,6 +55,8 @@ button.addEventListener('click', e => {
   bone.value = ''
   bmi.value = ''
   kcal.value = ''
+
+  notify(imc(value))
 
 })
 
@@ -106,12 +105,32 @@ const row = (cpf, name, birth, weight, height, situation, fat, tbw, mus, bone, b
   tr.appendChild(tdBmi)
   tr.appendChild(tdKcal)
 
-  notify(situation)
 }
 
-const notify = (situation, result, imc) => {
-  if(imc === 'Abaixo do peso') {
-    return notification.style = 'display: block'
+const notify = (param) => {
+  let notification = document.querySelector('article')
+  let title = document.querySelector('.title-tile')
+  let subtitle = document.querySelector('.subtitle-tile')
+  
+  if(param === 'Abaixo do peso') {
+    notification.className = 'tile is-child notification is-warning'
+    notification.style = 'display: block'
+    title.innerText = param
+    subtitle.innerText = 'O seu IMC ideal é entre 18.5 e 24.9.'
+  }
+
+  if(param === 'Peso ideal') {
+    notification.className = 'tile is-child notification is-success'
+    notification.style = 'display: block'
+    title.innerText = param
+    subtitle.innerText = 'O seu IMC ideal é entre 25 e 29.9.'
+  }
+
+  if(param === 'Sobrepeso') {
+    notification.className = 'tile is-child notification is-primary'
+    notification.style = 'display: block'
+    title.innerText = param
+    subtitle.innerText = 'O seu IMC ideal é entre 30 e 34.9.'
   }
 }
 
