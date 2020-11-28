@@ -17,8 +17,6 @@ citiesRef.once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var childKey = childSnapshot.key;
     var childData = childSnapshot.val()
-    console.log(childKey)
-    console.log(childData)
   });
 });
 
@@ -43,8 +41,6 @@ button.addEventListener('click', e => {
 
   row(cpf.value, name.value, birth.value, weight.value, height.value, imc(value), fat.value, tbw.value, mus.value, bone.value, bmi.value, kcal.value)
 
-  console.log(name.value + ' tem ' + birth.value + ' anos, pesa ' + weight.value + ' kg e tem ' + height.value + ' de altura.')
-  console.log('O IMC de ' + name.value + ' é: ' + value + ' situação: ' + imc(value))
   name.value = ''
   birth.value = ''
   weight.value = ''
@@ -105,8 +101,6 @@ const row = (cpf, name, birth, weight, height, situation, fat, tbw, mus, bone, b
   tr.appendChild(tdBone)
   tr.appendChild(tdBmi)
   tr.appendChild(tdKcal)
-
-  console.log(birth)
 
 }
 
