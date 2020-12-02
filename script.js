@@ -13,8 +13,8 @@ const bmi = document.querySelector('.bmi')
 const kcal = document.querySelector('.kcal')
 
 const citiesRef = firebase.database().ref('teste7-28555').orderByChild('name')
-citiesRef.once('value', function(snapshot) {
-  snapshot.forEach(function(childSnapshot) {
+citiesRef.once('value', snapshot => {
+  snapshot.forEach(childSnapshot => {
     var childKey = childSnapshot.key;
     var childData = childSnapshot.val()
   });
@@ -120,7 +120,7 @@ const notify = (param) => {
     notification.className = 'tile is-child notification is-success'
     notification.style = 'display: block'
     title.innerText = param
-    subtitle.innerText = 'O seu IMC é o ideal é entre 18.50 e 24.9.'
+    subtitle.innerText = 'O seu IMC é o ideal, entre 18.50 e 24.9.'
   }
 
   if(param === 'Sobrepeso') {
